@@ -56,3 +56,24 @@ d3.csv("data.csv").then(function(acsData) {
 
     chartGroup.append("g")
       .call(leftAxis);
+
+    // Step 5: Create Circles
+    // ==============================
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d.smokes))
+    .attr("cy", d => yLinearScale(d.income))
+    .attr("r", "15")
+    .attr("fill", "#008080")
+    .attr("opacity", ".5");
+
+    // Step 6: Initialize tool tip
+    // ==============================
+    var toolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.state}<br>Hair length: ${d.smokes}<br>Hits: ${d.income}`);
+      });
