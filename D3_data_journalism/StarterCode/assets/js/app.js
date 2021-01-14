@@ -15,7 +15,8 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3.select(".chart")
+var svg = d3
+  .select(".chart")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -60,14 +61,14 @@ d3.csv("data.csv").then(function(acsData) {
     // Step 5: Create Circles
     // ==============================
     var circlesGroup = chartGroup.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d.smokes))
-    .attr("cy", d => yLinearScale(d.income))
-    .attr("r", "15")
-    .attr("fill", "#008080")
-    .attr("opacity", ".5");
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", d => xLinearScale(d.smokes))
+      .attr("cy", d => yLinearScale(d.income))
+      .attr("r", "15")
+      .attr("fill", "#008080")
+      .attr("opacity", ".5");
 
     // Step 6: Initialize tool tip
     // ==============================
@@ -105,6 +106,8 @@ d3.csv("data.csv").then(function(acsData) {
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
         .text("Income");
-    }).catch(function(error) {
-      console.log(error);
-    });
+        
+
+}).catch(function(error) {
+  console.log(error);
+});
