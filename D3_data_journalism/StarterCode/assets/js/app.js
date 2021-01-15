@@ -73,6 +73,18 @@ d3.csv("/D3_data_journalism/StarterCode/assets/data/data.csv").then(function(acs
       .attr("fill", "#008080")
       .attr("opacity", ".5");
 
+    chartGroup.selectAll("text.text-circles")
+      .data(acsData)
+      .enter()
+      .append("text")
+      .attr("cx", d => xLinearScale(d.smokes))
+      .attr("cy", d => yLinearScale(d.income))
+      .text(d => d.abbr)
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "10px")
+      .attr("text-anchor", "middle")
+      .attr("fill", "white");
+      
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
@@ -99,15 +111,17 @@ d3.csv("/D3_data_journalism/StarterCode/assets/data/data.csv").then(function(acs
       // Create axes labels
       chartGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left + 40)
+        .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
+        .attr("font-size", "24px")
         .text("Smokers");
   
       chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
+        .attr("font-size", "24px")
         .text("Income");
 
 
